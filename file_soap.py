@@ -45,7 +45,12 @@ def clean_current_directory(word_list):
 							# Convert everything to upper case so we will find word
 							# regardless of case
 							for word in word_list:
-								if find_word(line, " " + word + " "):
+								# Search for isolated word or surrounded by . 
+								# (may appear in code)
+								if find_word(line, " " + word + " ") or \
+									find_word(line, "." + word + " ") or \
+									find_word(line, " " + word + ".") or \
+									find_word(line, "." + word + "."):
 									# Word has been found. Return the line number
 									print("%s was found in %s on line %d" %(
 												word, file_path, line_num))
